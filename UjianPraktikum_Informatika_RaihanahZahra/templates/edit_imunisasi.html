@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <h5 class="mb-3">
+            <i class="bi bi-shield-check text-success me-2"></i>
+            Edit Imunisasi
+        </h5>
+
+        <form method="POST">
+            <div class="row g-2">
+
+                <div class="mb-3">
+                    <select name="balita" class="form-select" required>
+                        {% for b in balita %}
+                        <option value="{{ b.id_balita }}"
+                            {% if b.id_balita == data.id_balita %}selected{% endif %}>
+                            {{ b.nama_balita }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <input name="jenis"
+                           class="form-control"
+                           value="{{ data.jenis_imunisasi }}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="date"
+                           name="tanggal"
+                           class="form-control"
+                           value="{{ data.tanggal }}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <input name="keterangan"
+                           class="form-control"
+                           value="{{ data.keterangan }}">
+                </div>
+
+            </div>
+        </form>
+
+         <a href="/imunisasi" class="btn btn-primary mt-3">Update
+        </a>
+
+        <a href="/imunisasi" class="btn btn-secondary mt-3"> Kembali
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}

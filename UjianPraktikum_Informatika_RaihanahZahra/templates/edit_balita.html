@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h4 class="mb-3">
+            <i class="bi bi-emoji-smile text-warning me-2"></i>
+            Edit Data Balita</h4>
+        <hr>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label>Nama Balita</label>
+                <input class="form-control" name="nama"
+                       value="{{ balita.nama_balita }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Tanggal Lahir</label>
+                <input type="date" class="form-control"
+                       name="tgl" value="{{ balita.tanggal_lahir }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Jenis Kelamin</label>
+                <select name="jk" class="form-control">
+                    <option value="L" {% if balita.jenis_kelamin=='L' %}selected{% endif %}>Laki-laki</option>
+                    <option value="P" {% if balita.jenis_kelamin=='P' %}selected{% endif %}>Perempuan</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Nama Ibu</label>
+                <select name="ibu" class="form-select">
+                    {% for i in ibu %}
+                    <option value="{{ i.id_ibu }}"
+                        {% if i.id_ibu == balita.id_ibu %}selected{% endif %}>
+                        {{ i.nama_ibu }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button class="btn btn-primary">Update</button>
+            <a href="/balita" class="btn btn-secondary">Batal</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

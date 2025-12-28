@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <h5 class="mb-3">
+            <i class="bi bi-person-hearts text-primary me-2"></i>
+            Edit Data Ibu
+        </h5>
+
+        <form method="POST">
+            <div class="row g-2">
+
+                <div class="mb-3">
+                    <input class="form-control"
+                           name="nama"
+                           value="{{ ibu.nama_ibu }}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="number"
+                           class="form-control"
+                           name="umur"
+                           value="{{ ibu.umur }}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control"
+                           name="alamat"
+                           value="{{ ibu.alamat }}"
+                           required>
+                </div>
+
+            </div>
+        </form>
+
+         <a href="/ibu" class="btn btn-primary mt-3">Update
+        </a>
+
+        <a href="/ibu" class="btn btn-danger mt-3"> Kembali
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}

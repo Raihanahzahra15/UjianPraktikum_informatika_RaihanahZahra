@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <h5 class="mb-3">
+            <i class="bi bi-person-hearts text-danger me-2"></i>
+            Data Ibu
+        </h5>
+
+        {% if session.role == 'petugas' %}
+        <div class="card border-danger mb-4">
+            <div class="card-body">
+
+                <h6 class="text-danger mb-3">
+                    <i class="bi bi-plus-circle"></i>
+                    Tambah Data Ibu
+                </h6>
+
+                <form method="POST">
+                    <div class="row g-2">
+
+                        <div class="col-md-4">
+                            <input class="form-control" name="nama"
+                                   placeholder="Nama Ibu" required>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input type="number" class="form-control"
+                                   name="umur" placeholder="Umur" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <input class="form-control" name="alamat"
+                                   placeholder="Alamat" required>
+                        </div>
+
+                        <div class="col-md-2 d-grid">
+                            <button class="btn btn-danger">
+                                <i class="bi bi-save"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-danger text-center">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Umur</th>
+                        <th>Alamat</th>
+                        {% if session.role == 'petugas' %}
+                        <th>Aksi</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in ibu %}
+                    <tr>
+                        <td class="text-center">{{ loop.index }}</td>
+                        <td>{{ i.nama_ibu }}</td>
+                        <td>{{ i.umur }}</td>
+                        <td>{{ i.alamat }}</td>
+
+                        {% if session.role == 'petugas' %}
+                        <td class="text-center">
+                            <a href="/ibu/edit/{{ i.id_ibu }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="/ibu/delete/{{ i.id_ibu }}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Hapus data?')">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            Belum ada data ibu
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

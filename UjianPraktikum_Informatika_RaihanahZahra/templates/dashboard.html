@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+ <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+
+<div class="card shadow mb-4">
+    <div class="card-body text-center">
+
+        <img src="{{ url_for('static', filename='logoPosyandu.png') }}"
+             alt="Logo Posyandu Kasih Ibu"
+             width="90"
+             class="mb-3">
+
+        <h4 class="fw-bold text-success mb-2">
+            <i class="bi bi-heart-pulse-fill me-2"></i>
+            Sistem Informasi Posyandu Kasih Ibu
+        </h4>
+
+        </h3>
+        <p class="text-muted">
+            Selamat datang, {{ session.username }} 👋  
+            Peran anda disini sebagai {{ session.role }}
+        </p>
+
+        {% if session.role == 'petugas' %}
+            <div class="alert alert-info">
+                Anda memiliki akses untuk menambah, mengubah, dan menghapus data.
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                Anda hanya memiliki akses untuk melihat data.
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+
+        <h5 class="fw-bold text-success mb-3">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            Tentang Sistem
+        </h5>
+
+        <p class="text-muted" style="text-align: justify;">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            Sistem Informasi Posyandu Kasih Ibu dirancang untuk mendukung
+            pelayanan kesehatan ibu dan balita secara digital, terstruktur,
+            dan berkelanjutan.
+        </p>
+
+        <p class="text-muted" style="text-align: justify;">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            Sistem ini membantu petugas dalam pencatatan data penimbangan,
+            imunisasi, serta informasi ibu dan balita secara cepat, aman,
+            dan akurat demi meningkatkan kualitas layanan masyarakat.
+        </p>
+
+    </div>
+</div>
+
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <h5 class="fw-bold text-success mb-4">
+            <i class="bi bi-telephone-fill me-2"></i>
+            Hubungi Kami
+        </h5>
+
+        <div class="row text-center">
+
+            <div class="col-md-4 mb-3">
+                <i class="bi bi-geo-alt-fill fs-3 text-success"></i>
+                <h6 class="fw-bold mt-2">Alamat</h6>
+                <p class="text-muted mb-0">
+                    Posyandu Kasih Ibu<br>
+                    Desa Sehat, Kecamatan Sejahtera
+                </p>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <i class="bi bi-telephone-fill fs-3 text-success"></i>
+                <h6 class="fw-bold mt-2">Kontak</h6>
+                <p class="text-muted mb-0">
+                    08123456789<br>
+                    posyandu.kasihibu@email.com
+                </p>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <i class="bi bi-clock-fill fs-3 text-success"></i>
+                <h6 class="fw-bold mt-2">Jam Layanan</h6>
+                <p class="text-muted mb-0">
+                    Selasa Minggu ke 2<br>
+                    08.00 – 12.00 WIB
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
